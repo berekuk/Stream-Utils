@@ -1,3 +1,9 @@
+stream-utils (0.1.2) unstable; urgency=low
+
+  * bash_completion renamed and now completes cursors as input streams too
+
+ -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Fri, 17 Jul 2009 21:26:35 +0400
+
 stream-utils (0.1.1) unstable; urgency=low
 
   * more POD

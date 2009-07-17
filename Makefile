@@ -11,7 +11,7 @@ install:
 	mkdir -p $(DESTDIR)/usr/share/man/man1/
 	cp man/stream.1 $(DESTDIR)/usr/share/man/man1/
 	mkdir -p $(DESTDIR)/etc/bash_completion.d/
-	cp bash_completion $(DESTDIR)/etc/bash_completion.d/
+	cp bash_completion $(DESTDIR)/etc/bash_completion.d/stream
 
 clean:
 	rm -rf man

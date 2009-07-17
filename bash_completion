@@ -15,7 +15,7 @@ _stream()
 
     prev=${COMP_WORDS[COMP_CWORD-1]}
 
-    COMPREPLY=( $( compgen -W "$(ls /etc/stream/in)" $cur) )
+    COMPREPLY=( $( compgen -W "$(ls /etc/stream/in; ls /etc/stream/cursor)" $cur) )
 
     return 0;
 }
