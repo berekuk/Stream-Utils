@@ -1,0 +1,12 @@
+stream-utils (0.1.1) unstable; urgency=low
+
+  * more POD
+  * bash_completion packaged
+
+ -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Fri, 17 Jul 2009 21:22:59 +0400
+
+stream-utils (0.1.0) unstable; urgency=low
+
+  * Initial release
+
+ -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Sun, 05 Jul 2009 18:58:46 +0400
