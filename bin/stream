@@ -10,7 +10,12 @@ stream - command line tool to manage streams
 
 =head1 SYNOPSIS
 
-    stream COMMAND [ARGS]
+stream COMMAND [ARGS]
+
+Available subcommands:
+
+    head        show next 10 items from input stream
+    lag         show lag of given input stream
 
 =head1 COMMANDS
 
@@ -50,10 +55,12 @@ if ($command eq 'head') {
             print $dump->Dump, "\n";
         }
         else {
+            chomp $item;
             print $item, "\n";
         }
     }
 }
+
 =item I<lag>
 
     stream lag INPUT_STREAM
@@ -81,5 +88,3 @@ else {
 Vyacheslav Matjukhin <mmcleric@yandex-team.ru>
 
 =cut
-
-

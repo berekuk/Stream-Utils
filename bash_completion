@@ -15,6 +15,7 @@ _stream()
 
     prev=${COMP_WORDS[COMP_CWORD-1]}
 
+    # TODO - should use catalog's meta-capabilities when they'll be implemented
     COMPREPLY=( $( compgen -W "$(ls /etc/stream/in; ls /etc/stream/cursor)" $cur) )
 
     return 0;

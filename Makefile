@@ -1,5 +1,5 @@
 build:
-	mkdir man
+	mkdir -p man
 	pod2man bin/stream man/stream.1
 
 test:
