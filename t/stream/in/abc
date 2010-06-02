@@ -1,0 +1,12 @@
+# vim: ft=perl
+
+use base qw(Stream::In);
+
+sub lag {
+    return 123;
+}
+
+sub caps {
+    { lag => 1 }
+}
+__PACKAGE__->new;

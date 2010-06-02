@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Copyright (c) 2009 Yandex.ru
+# Copyright (c) 2009-2010 Yandex.ru
 
 use strict;
 use warnings;
@@ -12,76 +12,10 @@ stream - command line tool to manage streams
 
 stream COMMAND [ARGS]
 
-Available subcommands:
-
-    head        show next 10 items from input stream
-    lag         show lag of given input stream
-
-=head1 COMMANDS
-
-=over
-
 =cut
 
-use Stream::Utils qw(catalog);
-
-use Data::Dumper;
-
-use Getopt::Long 2.33;
-use Pod::Usage;
-
-GetOptions() or pod2usage(2);
-
-my $command = shift or pod2usage(2);
-
-=item I<head>
-
-    stream head INPUT_STREAM
-
-Print first 10 items from given stream. If items are complex refs, they'll be dumped using Data::Dumper, otherwise - as is.
-
-=cut
-if ($command eq 'head') {
-    my $name = shift or pod2usage(2);
-    pod2usage(2) if @ARGV;
-    my $stream = catalog->in($name);
-    for (1..10) {
-        my $item = $stream->read;
-        last unless defined $item;
-        if (ref $item) {
-            my $dump = Data::Dumper->new([$item]);
-            $dump->Terse(1);
-            $dump->Indent(0);
-            print $dump->Dump, "\n";
-        }
-        else {
-            chomp $item;
-            print $item, "\n";
-        }
-    }
-}
-
-=item I<lag>
-
-    stream lag INPUT_STREAM
-
-Shows lag of given stream if it supports lag method.
-
-=cut
-elsif ($command eq 'lag') {
-    my $name = shift or pod2usage(2);
-    pod2usage(2) if @ARGV;
-    my $stream = catalog->in($name);
-    unless ($stream->can('lag')) {
-        die "'$name' doesn't support lag() method";
-    }
-    print $stream->lag, "\n";
-}
-else {
-    pod2usage(2);
-}
-
-=back
+use StreamApp;
+StreamApp->run;
 
 =head1 AUTHOR
 
