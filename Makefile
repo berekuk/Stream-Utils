@@ -3,7 +3,8 @@ build:
 	pod2man bin/stream man/stream.1
 
 test:
-	perl -c bin/stream
+	perl -Ilib -c bin/stream
+	prove -v t/*.t
 
 install:
 	mkdir -p $(DESTDIR)/usr/bin/
