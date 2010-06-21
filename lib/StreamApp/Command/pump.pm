@@ -6,13 +6,12 @@ use warnings;
 use StreamApp -command;
 
 use Stream::Utils 0.8.0 qw(catalog);
-use Data::Dumper;
 
 =head1 SYNOPSIS
 
-    stream head INPUT_STREAM
+    stream pump PUMPER
 
-Print first 10 items from given stream. If items are complex refs, they'll be dumped using Data::Dumper, otherwise - as is.
+Process 10 items using given pumper.
 
 =cut
 
