@@ -3,3 +3,4 @@
 /files
 /stream-utils
 /*.substvars
+/*.debhelper.log
