@@ -1,12 +1,22 @@
 # vim: ft=perl
 
-use base qw(Stream::In);
+use parent qw(Stream::In);
 
 sub lag {
     return 123;
 }
 
+sub read {
+    my $self = shift;
+    $self->{i}++;
+    return if $self->{i} > 30;
+    return "line$self->{i}\n";
+}
+
 sub caps {
     { lag => 1 }
 }
-__PACKAGE__->new;
+
+sub {
+    __PACKAGE__->new;
+}

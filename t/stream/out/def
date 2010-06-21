@@ -1,0 +1,7 @@
+# vim: ft=perl
+
+use Stream::File;
+
+sub {
+    Stream::File->new('tfiles/file');
+}

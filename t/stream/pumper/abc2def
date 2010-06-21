@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+
+use Stream::Pumper::Common;
+use Streams;
+Stream::Pumper::Common->new({
+    in => catalog->in("abc"),
+    out => catalog->out("def"),
+});

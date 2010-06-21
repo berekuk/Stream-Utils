@@ -1,9 +1,15 @@
-stream-utils (0.2.0) UNRELEASED; urgency=low
+stream-utils (0.3.0) UNRELEASED; urgency=low
+
+  * 'pump' command
+
+ -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Mon, 21 Jun 2010 23:10:11 +0400
+
+stream-utils (0.2.0) unstable; urgency=low
 
   * rewritten using App::Cmd
   * 'head' command supports --limit option
 
- -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Thu, 03 Jun 2010 03:20:23 +0400
+ -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Mon, 21 Jun 2010 23:10:06 +0400
 
 stream-utils (0.1.3) unstable; urgency=low
 
