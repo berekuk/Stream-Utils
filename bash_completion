@@ -6,7 +6,7 @@ _stream()
     COMPREPLY=()
     cur=${COMP_WORDS[COMP_CWORD]}
 
-    commands='head lag'
+    commands='head lag info list pump'
 
     if [[ $COMP_CWORD -eq 1 ]] ; then
         COMPREPLY=( $( compgen -W "$commands" -- $cur ) )
