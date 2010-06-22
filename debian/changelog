@@ -1,9 +1,9 @@
-stream-utils (0.3.0) UNRELEASED; urgency=low
+stream-utils (0.3.0) unstable; urgency=low
 
   * 'pump' command
   * 'info' command
 
- -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Mon, 21 Jun 2010 23:10:11 +0400
+ -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Tue, 22 Jun 2010 15:01:37 +0400
 
 stream-utils (0.2.0) unstable; urgency=low
 
