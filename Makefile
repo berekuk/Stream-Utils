@@ -9,6 +9,8 @@ test:
 install:
 	mkdir -p $(DESTDIR)/usr/bin/
 	cp bin/stream $(DESTDIR)/usr/bin/
+	mkdir -p $(DESTDIR)/usr/share/perl5/
+	cp -r lib/* $(DESTDIR)/usr/share/perl5/
 	mkdir -p $(DESTDIR)/usr/share/man/man1/
 	cp man/stream.1 $(DESTDIR)/usr/share/man/man1/
 	mkdir -p $(DESTDIR)/etc/bash_completion.d/
