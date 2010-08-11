@@ -1,6 +1,7 @@
 # vim: ft=perl
 
 use parent qw(Stream::In);
+use parent qw(Stream::In::Role::Lag);
 
 sub lag {
     return 123;
@@ -11,10 +12,6 @@ sub read {
     $self->{i}++;
     return if $self->{i} > 30;
     return "line$self->{i}\n";
-}
-
-sub caps {
-    { lag => 1 }
 }
 
 sub {

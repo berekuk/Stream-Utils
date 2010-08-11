@@ -5,7 +5,7 @@ use warnings;
 
 use StreamApp -command;
 
-use Stream::Utils 0.8.0 qw(catalog);
+use Stream::Utils 0.9.0 qw(catalog);
 
 =head1 SYNOPSIS
 
@@ -33,16 +33,6 @@ sub validate_args {
     $self->usage_error("not implemented yet") unless $opt->mode =~ /^in|out$/;
 }
 
-sub print_caps {
-    my $obj = shift;
-    my $caps = $obj->caps;
-    if (%$caps) {
-        print "caps: ";
-        print join ",", map { "$_ = $caps->{$_}" } keys %{ $caps };
-        print "\n";
-    }
-}
-
 sub execute {
     my ($self, $opt, $args) = @_;
     my $name = shift @$args;
@@ -50,15 +40,13 @@ sub execute {
         my $in = catalog->in($name);
         print ref($in)."\n" unless ref($in) =~ /^Stream::Catalog::In/;
 
-        print_caps($in);
-        if ($in->cap('lag')) {
+        if ($in->does('Stream::In::Role::Lag')) {
             print "lag: ".$in->lag."\n";
         }
     }
     elsif ($opt->mode eq 'out') {
         my $out = catalog->out($name);
         print ref($out)."\n" unless ref($out) =~ /^Stream::Catalog::Out/;
-        print_caps($out);
     }
     else {
         die "not implemented yet";

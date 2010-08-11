@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+
+use Stream::Simple qw(array_in);
+
+sub {
+    array_in([
+        { 'a' => 'A' },
+        { 'b' => 'B' },
+    ]);
+};

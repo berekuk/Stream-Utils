@@ -6,7 +6,7 @@ _stream()
     COMPREPLY=()
     cur=${COMP_WORDS[COMP_CWORD]}
 
-    commands='head lag info list pump'
+    commands=$(perl -MStreamApp -le 'print for sort StreamApp->command_names')
 
     if [[ $COMP_CWORD -eq 1 ]] ; then
         COMPREPLY=( $( compgen -W "$commands" -- $cur ) )

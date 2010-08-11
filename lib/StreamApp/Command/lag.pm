@@ -23,7 +23,7 @@ sub execute {
     my ($self, $opt, $args) = @_;
     my $name = shift @$args;
     my $stream = catalog->in($name);
-    unless ($stream->cap('lag')) {
+    unless ($stream->does('Stream::In::Role::Lag')) {
         die "'$name' doesn't support lag() method";
     }
     print $stream->lag, "\n";
