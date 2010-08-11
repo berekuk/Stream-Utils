@@ -30,7 +30,7 @@ sub opt_spec {
 sub validate_args {
     my ($self, $opt, $args) = @_;
     $self->usage_error("Object name expected") unless @$args == 1;
-    $self->usage_error("not implemented yet") unless $opt->mode =~ /^in|out$/;
+    $self->usage_error("not implemented yet") unless $opt->mode =~ /^in|out|storage$/;
 }
 
 sub execute {
@@ -47,6 +47,16 @@ sub execute {
     elsif ($opt->mode eq 'out') {
         my $out = catalog->out($name);
         print ref($out)."\n" unless ref($out) =~ /^Stream::Catalog::Out/;
+    }
+    elsif ($opt->mode eq 'storage') {
+        my $storage = catalog->storage($name);
+        print ref($storage)."\n" unless ref($storage) =~ /^Stream::Catalog::(?:Out|Storage)/;
+        if ($storage->does('Stream::Storage::Role::ClientList')) {
+            if (my @client_names = $storage->client_names) {
+                print "Clients:\n";
+                print "\t$_\n" for @client_names;
+            }
+        }
     }
     else {
         die "not implemented yet";

@@ -1,10 +1,10 @@
+test: build
+	perl -Ilib -c bin/stream
+	prove -v t/*.t
+
 build:
 	mkdir -p man
 	pod2man bin/stream man/stream.1
-
-test:
-	perl -Ilib -c bin/stream
-	prove -v t/*.t
 
 install:
 	mkdir -p $(DESTDIR)/usr/bin/
