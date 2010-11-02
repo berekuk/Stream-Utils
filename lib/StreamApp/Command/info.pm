@@ -46,15 +46,44 @@ sub execute {
     }
     elsif ($opt->mode eq 'out') {
         my $out = catalog->out($name);
-        print ref($out)."\n" unless ref($out) =~ /^Stream::Catalog::Out/;
+
+        my $description;
+        if (ref($out) =~ /^Stream::Catalog::Out/) {
+            $description = 'anonymous';
+        }
+        else {
+            $description = ref($out);
+        }
+        print $description, "\n";
     }
     elsif ($opt->mode eq 'storage') {
         my $storage = catalog->storage($name);
-        print ref($storage)."\n" unless ref($storage) =~ /^Stream::Catalog::(?:Out|Storage)/;
+
+        my $description;
+        if (ref($storage) =~ /^Stream::Catalog::Out/) {
+            $description = 'anonymous';
+        }
+        else {
+            $description = ref($storage);
+            if ($storage->does('Stream::Formatter::Wrapped')) {
+                $description = ref($storage->{storage}).' (wrapped)'; # FIXME - evil encapsulation violation!
+            }
+        }
+        print $description, "\n";
+
         if ($storage->does('Stream::Storage::Role::ClientList')) {
             if (my @client_names = $storage->client_names) {
                 print "Clients:\n";
-                print "\t$_\n" for @client_names;
+                for my $name (@client_names) {
+                    print "\t$name";
+                    my $in = $storage->stream($name);
+                    if ($in->does('Stream::In::Role::Lag')) {
+                        print "\t".$in->lag."\n";
+                    }
+                    else {
+                        print "\n";
+                    }
+                }
             }
         }
     }
