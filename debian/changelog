@@ -1,10 +1,10 @@
-stream-utils (0.3.1) UNRELEASED; urgency=low
+stream-utils (0.3.1) unstable; urgency=low
 
   * using stream roles instead of deprecated caps
   * stream info --storage can print client names
   * stream info --storage prints input stream lags
 
- -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Wed, 11 Aug 2010 20:03:55 +0400
+ -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Tue, 09 Nov 2010 19:59:01 +0300
 
 stream-utils (0.3.0) unstable; urgency=low
 

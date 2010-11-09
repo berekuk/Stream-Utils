@@ -42,9 +42,27 @@ sub execute {
 #        print ref($in)."\n";
     }
     my @out = catalog->list_out();
+    my %out;
+    for my $name (@out) {
+        my $out = eval {
+            catalog->out($name);
+        };
+        if ($out) {
+            $out{$name} = $out;
+        }
+        else {
+            print RED "Failed to load '$name': $@";
+        }
+    }
     print "Output streams:\n";
-    for (sort @out) {
-        print "\t$_\n";
+    for (sort keys %out) {
+        my $out = $out{$_};
+        print "\t$_\n" unless $out->does('Stream::Storage');
+    }
+    print "Storages:\n";
+    for (sort keys %out) {
+        my $out = $out{$_};
+        print "\t$_\n" if $out->does('Stream::Storage');
     }
 }
 
