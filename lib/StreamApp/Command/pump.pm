@@ -38,12 +38,4 @@ sub abstract {
     "pump several items using given pumper";
 }
 
-
-=head1 AUTHOR
-
-Vyacheslav Matjukhin <mmcleric@yandex-team.ru>
-
-=cut
-
 1;
-

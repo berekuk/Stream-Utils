@@ -96,12 +96,4 @@ sub abstract {
     "print info about given stream";
 }
 
-
-=head1 AUTHOR
-
-Vyacheslav Matjukhin <mmcleric@yandex-team.ru>
-
-=cut
-
 1;
-
