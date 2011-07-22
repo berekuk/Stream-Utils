@@ -34,11 +34,9 @@ sub execute {
     if ($opt->h) {
         my @letter = qw( K M G );
         my $next_letter = 0;
-        while ($next_letter < @letter - 1) {
-            if ($lag > 1024) {
-                $lag = int($lag / 102.4) / 10;
-                $next_letter++;
-            }
+        while ($next_letter < @letter - 1 and $lag > 1024) {
+            $lag = int($lag / 102.4) / 10;
+            $next_letter++;
         }
         if ($next_letter) {
             $lag .= $letter[ $next_letter - 1 ];
@@ -50,12 +48,6 @@ sub execute {
 sub abstract {
     "show lag of given input stream";
 }
-
-=head1 AUTHOR
-
-Vyacheslav Matjukhin <mmcleric@yandex-team.ru>
-
-=cut
 
 1;
 

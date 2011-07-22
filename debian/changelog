@@ -1,3 +1,9 @@
+stream-utils (0.3.3) unstable; urgency=low
+
+  * stream lag -h don't hang if lag is too small
+
+ -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Tue, 19 Jul 2011 22:15:24 +0400
+
 stream-utils (0.3.2) unstable; urgency=low
 
   * stream lag '-h' option

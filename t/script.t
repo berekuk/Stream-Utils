@@ -27,6 +27,11 @@ sub lag :Test {
     is($result, "123\n", 'lag command');
 }
 
+sub human_lag :Test {
+    my $result = qx(./bin/stream lag -h big_lag);
+    is($result, "97.6K\n", 'lag command');
+}
+
 sub pump :Test(2) {
     my $result = qx(./bin/stream pump --limit=5 abc2def);
     is($result, "ok\n", 'pump command');

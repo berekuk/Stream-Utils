@@ -1,0 +1,16 @@
+use parent qw(
+    Stream::In
+    Stream::In::Role::Lag
+);
+
+sub lag {
+    return 100_000;
+}
+
+sub read {
+    return;
+}
+
+sub {
+    __PACKAGE__->new;
+}
