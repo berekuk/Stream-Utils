@@ -1,0 +1,32 @@
+# with description
+
+use Moose;
+with
+    'Stream::Moose::Storage',
+    'Stream::Moose::Out::Easy',
+    'Stream::Moose::Role::Description',
+;
+
+sub isa {
+    return 1 if $_[1] eq __PACKAGE__;
+    $_[0]->next::method if $_[0]->next::can;
+} # ugly hack
+
+sub in {
+    die 'not implemented';
+}
+
+sub write {
+    die 'not implemented';
+}
+
+sub description {
+    my $self = shift;
+    return "wd description";
+}
+
+__PACKAGE__->meta->make_immutable;
+
+sub {
+    __PACKAGE__->new;
+};

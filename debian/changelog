@@ -1,3 +1,12 @@
+stream-utils (0.3.4) unstable; urgency=low
+
+  * stream info:
+   - recognize new moose roles
+   - print object's description if it's available
+  * stream list: --verbose option
+
+ -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Tue, 06 Sep 2011 18:57:19 +0400
+
 stream-utils (0.3.3) unstable; urgency=low
 
   * stream lag -h don't hang if lag is too small

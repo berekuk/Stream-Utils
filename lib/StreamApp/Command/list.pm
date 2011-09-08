@@ -6,6 +6,7 @@ use warnings;
 use StreamApp -command;
 
 use Stream::Utils 0.8.0 qw(catalog);
+use StreamApp::Common;
 
 use Term::ANSIColor qw(:constants);
 $Term::ANSIColor::AUTORESET = 1;
@@ -19,6 +20,7 @@ List all streams.
 =cut
 
 sub opt_spec {
+    ['verbose|v', "print each storage's info"],
 }
 
 sub validate_args {
@@ -29,10 +31,10 @@ sub validate_args {
 sub execute {
     my ($self, $opt, $args) = @_;
     my @in = catalog->list_in();
-    print "Input streams:\n";
+    print "==== Input streams ====\n";
     STDOUT->autoflush(1);
     for my $name (sort @in) {
-        print "\t$name\n";
+        print "$name\n";
 #        my $in = eval { catalog->in($name) };
 #        unless ($in) {
 #            chomp $@;
@@ -54,15 +56,25 @@ sub execute {
             print RED "Failed to load '$name': $@";
         }
     }
-    print "Output streams:\n";
+    print "\n";
+
+    print "==== Output streams ====\n";
     for (sort keys %out) {
         my $out = $out{$_};
-        print "\t$_\n" unless $out->does('Stream::Storage');
+        print "$_\n" unless $out->does('Stream::Storage');
     }
-    print "Storages:\n";
+    print "\n";
+
+    my $common = StreamApp::Common->new;
+    print "==== Storages ====\n";
     for (sort keys %out) {
         my $out = $out{$_};
-        print "\t$_\n" if $out->does('Stream::Storage');
+        next unless $out->does('Stream::Storage');
+        print "$_\n";
+        if ($opt->verbose) {
+            $common->print_storage($out);
+            print "\n";
+        }
     }
 }
 

@@ -62,5 +62,13 @@ my $expected = q/{
     is($result, $expected, 'head command with --dump-indent option');
 }
 
+sub info :Test(2) {
+    my $result = qx(./bin/stream info --storage def);
+    is($result, "Stream::File\n");
+
+    my $desc_result = qx(./bin/stream info --storage wd);
+    is($desc_result, "anonymous\nwd description\n");
+}
+
 __PACKAGE__->new->runtests;
 1;

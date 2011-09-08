@@ -50,4 +50,3 @@ sub abstract {
 }
 
 1;
-

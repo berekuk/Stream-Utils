@@ -7,6 +7,8 @@ use StreamApp -command;
 
 use Stream::Utils 0.9.0 qw(catalog);
 
+use StreamApp::Common;
+
 =head1 SYNOPSIS
 
     stream info --in IN_STREAM_NAME
@@ -30,62 +32,25 @@ sub opt_spec {
 sub validate_args {
     my ($self, $opt, $args) = @_;
     $self->usage_error("Object name expected") unless @$args == 1;
-    $self->usage_error("not implemented yet") unless $opt->mode =~ /^in|out|storage$/;
+    $self->usage_error("not implemented yet") unless $opt->mode =~ /^(?:in|out|storage)$/;
 }
 
 sub execute {
     my ($self, $opt, $args) = @_;
     my $name = shift @$args;
+
+    my $common = StreamApp::Common->new;
     if ($opt->mode eq 'in') {
         my $in = catalog->in($name);
-        print ref($in)."\n" unless ref($in) =~ /^Stream::Catalog::In/;
-
-        if ($in->does('Stream::In::Role::Lag')) {
-            print "lag: ".$in->lag."\n";
-        }
+        $common->print_in($in);
     }
     elsif ($opt->mode eq 'out') {
         my $out = catalog->out($name);
-
-        my $description;
-        if (ref($out) =~ /^Stream::Catalog::Out/) {
-            $description = 'anonymous';
-        }
-        else {
-            $description = ref($out);
-        }
-        print $description, "\n";
+        $common->print_out($out);
     }
     elsif ($opt->mode eq 'storage') {
         my $storage = catalog->storage($name);
-
-        my $description;
-        if (ref($storage) =~ /^Stream::Catalog::Out/) {
-            $description = 'anonymous';
-        }
-        else {
-            $description = ref($storage);
-            if ($storage->does('Stream::Formatter::Wrapped')) {
-                $description = ref($storage->{storage}).' (wrapped)'; # FIXME - evil encapsulation violation!
-            }
-        }
-        print $description, "\n";
-
-        if ($storage->does('Stream::Storage::Role::ClientList')) {
-            if (my @client_names = $storage->client_names) {
-                print "Clients:\n";
-                for my $name (@client_names) {
-                    print "\t$name";
-                    my $in = $storage->stream($name);
-                    if ($in->does('Stream::In::Role::Lag')) {
-                        print "\t".$in->lag."\n";
-                    }
-                    else {
-                        print "\n";
-                    }
-                }
-            }
-        }
+        $common->print_storage($storage);
     }
     else {
         die "not implemented yet";
