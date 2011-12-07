@@ -1,3 +1,9 @@
+stream-utils (0.3.5) unstable; urgency=low
+
+  * call ->DOES instead of ->does everywhere
+
+ -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Wed, 07 Dec 2011 20:01:52 +0400
+
 stream-utils (0.3.4) unstable; urgency=low
 
   * stream info:

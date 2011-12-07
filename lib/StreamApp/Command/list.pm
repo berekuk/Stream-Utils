@@ -61,7 +61,7 @@ sub execute {
     print "==== Output streams ====\n";
     for (sort keys %out) {
         my $out = $out{$_};
-        print "$_\n" unless $out->does('Stream::Storage');
+        print "$_\n" unless $out->DOES('Stream::Storage');
     }
     print "\n";
 
@@ -69,7 +69,7 @@ sub execute {
     print "==== Storages ====\n";
     for (sort keys %out) {
         my $out = $out{$_};
-        next unless $out->does('Stream::Storage');
+        next unless $out->DOES('Stream::Storage');
         print "$_\n";
         if ($opt->verbose) {
             $common->print_storage($out);

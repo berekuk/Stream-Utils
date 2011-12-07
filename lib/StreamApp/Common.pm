@@ -15,7 +15,7 @@ sub new {
 sub print_description {
     my ($self, $object) = @_;
 
-    return unless $object->does('Stream::Moose::Role::Description');
+    return unless $object->DOES('Stream::Moose::Role::Description');
     print $object->description, "\n";
 }
 
@@ -26,8 +26,8 @@ sub print_in {
     $self->print_description($in);
 
     if (
-        $in->does('Stream::In::Role::Lag')
-        or $in->does('Stream::Moose::In::Lag')
+        $in->DOES('Stream::In::Role::Lag')
+        or $in->DOES('Stream::Moose::In::Lag')
     ) {
         print "lag: ".$in->lag."\n";
     }
@@ -56,7 +56,7 @@ sub print_storage {
     }
     else {
         $description = ref($storage);
-        if ($storage->does('Stream::Formatter::Wrapped')) {
+        if ($storage->DOES('Stream::Formatter::Wrapped')) {
             $description = ref($storage->{storage}).' (wrapped)'; # FIXME - evil encapsulation violation!
         }
     }
@@ -65,8 +65,8 @@ sub print_storage {
     $self->print_description($storage);
 
     if (
-        $storage->does('Stream::Storage::Role::ClientList')
-        or $storage->does('Stream::Moose::Storage::ClientList')
+        $storage->DOES('Stream::Storage::Role::ClientList')
+        or $storage->DOES('Stream::Moose::Storage::ClientList')
     ) {
         if (my @client_names = $storage->client_names) {
             print "Clients:\n";
@@ -76,8 +76,8 @@ sub print_storage {
                 try {
                     my $in = $storage->stream($name);
                     if (
-                        $in->does('Stream::In::Role::Lag')
-                        or $in->does('Stream::Moose::In::Lag')
+                        $in->DOES('Stream::In::Role::Lag')
+                        or $in->DOES('Stream::Moose::In::Lag')
                     ) {
                         print "\t".$in->lag."\n";
                     }
