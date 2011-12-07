@@ -4,13 +4,20 @@ package bin::stream;
 use strict;
 use warnings;
 
-=head1 NAME
-
-stream - command line tool to manage streams
+# ABSTRACT: command line tool to manage streams
 
 =head1 SYNOPSIS
 
-stream COMMAND [ARGS]
+Available commands:
+
+  commands: list the application's commands
+      help: help command
+
+      head: print several items from given input stream
+      info: print info about given stream
+       lag: show lag of given input stream
+      list: List all streams
+      pump: pump several items using given pumper
 
 =cut
 

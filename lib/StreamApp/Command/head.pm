@@ -1,5 +1,7 @@
 package StreamApp::Command::head;
 
+# ABSTRACT: print first items from given input stream
+
 use strict;
 use warnings;
 

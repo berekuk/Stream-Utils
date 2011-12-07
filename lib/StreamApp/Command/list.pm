@@ -1,5 +1,7 @@
 package StreamApp::Command::list;
 
+# ABSTRACT: list command
+
 use strict;
 use warnings;
 

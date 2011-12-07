@@ -1,5 +1,7 @@
 package StreamApp::Common;
 
+# ABSTRACT: common functions for stream app commands
+
 use strict;
 use warnings;
 

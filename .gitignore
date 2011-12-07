@@ -1,2 +1,4 @@
 /man
 /tfiles
+/debuild
+/debian/stamp

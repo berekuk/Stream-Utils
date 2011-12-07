@@ -1,5 +1,7 @@
 package StreamApp::Command::help;
 
+# ABSTRACT: help command
+
 use strict;
 use warnings;
 

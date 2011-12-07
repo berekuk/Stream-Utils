@@ -1,5 +1,7 @@
 package StreamApp::Command::lag;
 
+# ABSTRACT: show lag of given input stream
+
 use strict;
 use warnings;
 

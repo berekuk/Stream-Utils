@@ -1,5 +1,7 @@
 package StreamApp::Command::info;
 
+# ABSTRACT: show info for any stream from catalog
+
 use strict;
 use warnings;
 

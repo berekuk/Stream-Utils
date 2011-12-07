@@ -1,5 +1,7 @@
 package StreamApp::Command::pump;
 
+# ABSTRACT: pump command (deprecated, see Yandex::Pumper)
+
 use strict;
 use warnings;
 
