@@ -17,7 +17,7 @@ sub new {
 sub print_description {
     my ($self, $object) = @_;
 
-    return unless $object->DOES('Stream::Moose::Role::Description');
+    return unless $object->DOES('Stream::Role::Description');
     print $object->description, "\n";
 }
 
@@ -27,10 +27,7 @@ sub print_in {
 
     $self->print_description($in);
 
-    if (
-        $in->DOES('Stream::In::Role::Lag')
-        or $in->DOES('Stream::Moose::In::Lag')
-    ) {
+    if ($in->DOES('Stream::In::Role::Lag')) {
         print "lag: ".$in->lag."\n";
     }
 }
@@ -64,12 +61,13 @@ sub print_storage {
     }
     print $description, "\n";
 
+    if ($storage->DOES('Stream::Role::Owned')) {
+        print "owner: ".$storage->owner."\n";
+    }
+
     $self->print_description($storage);
 
-    if (
-        $storage->DOES('Stream::Storage::Role::ClientList')
-        or $storage->DOES('Stream::Moose::Storage::ClientList')
-    ) {
+    if ($storage->DOES('Stream::Storage::Role::ClientList')) {
         if (my @client_names = $storage->client_names) {
             print "Clients:\n";
             for my $name (@client_names) {
@@ -77,10 +75,7 @@ sub print_storage {
 
                 try {
                     my $in = $storage->stream($name);
-                    if (
-                        $in->DOES('Stream::In::Role::Lag')
-                        or $in->DOES('Stream::Moose::In::Lag')
-                    ) {
+                    if ($in->DOES('Stream::In::Role::Lag')) {
                         print "\t".$in->lag."\n";
                     }
                     else {
