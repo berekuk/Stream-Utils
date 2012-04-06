@@ -72,7 +72,7 @@ sub print_all_lags {
     for my $name (catalog->list_out()) {
         my $storage = eval { catalog->out($name) };
         if ($@) {
-            print RED "Failed to load '$name': $@";
+            print STDERR RED "Failed to load '$name': $@";
             next;
         }
         next unless $storage->DOES('Stream::Storage');
@@ -83,13 +83,13 @@ sub print_all_lags {
     for my $name (@in_names) {
         my $in = eval { catalog->in($name) };
         if ($@) {
-            print RED "Failed to load '$name': $@";
+            print STDERR RED "Failed to load '$name': $@";
             next;
         }
         next unless $in->DOES('Stream::In::Role::Lag');
         my $lag = eval { $in->lag };
         if ($@) {
-            print RED "Failed to get lag for '$name': $@";
+            print STDERR RED "Failed to get lag for '$name': $@";
             next;
         }
         $lag = $self->humanize_lag($lag) if $opt->h;
