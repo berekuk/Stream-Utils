@@ -1,3 +1,9 @@
+stream-utils (0.5.0) unstable; urgency=low
+
+  * 'graph' command
+
+ -- Vyacheslav Matjukhin (No comments) <mmcleric@yandex-team.ru>  Wed, 16 May 2012 23:38:00 +0400
+
 stream-utils (0.4.1) unstable; urgency=low
 
   * print lag errors to stderr (instead of stdout)

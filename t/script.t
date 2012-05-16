@@ -10,7 +10,7 @@ use lib 'lib';
 
 BEGIN {
     $ENV{PERL5LIB} = 'lib';
-    $ENV{STREAM_DIR} = 't/stream';
+    $ENV{STREAM_PATH} = 't/stream';
 }
 
 sub setup :Test(setup) {
@@ -68,6 +68,12 @@ sub info :Test(2) {
 
     my $desc_result = qx(./bin/stream info --storage wd);
     is($desc_result, "anonymous\nwd description\n");
+}
+
+sub graph :Test(2) {
+    local $ENV{PUMPER_DIR} = 't/script';
+    my $result = qx(./bin/stream graph);
+    diag($result);
 }
 
 __PACKAGE__->new->runtests;
